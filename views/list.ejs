@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>详情</title>
+<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="/stylesheets/common.css">
+<style>
+	body{
+		background: #eee;
+	}
+	.mr10{
+		margin-right: 10px;
+	}
+
+	.good_img{
+		height: 200px!important;
+	}
+
+	.ctr{
+		padding: 10px 0;
+	}
+
+</style>
+</head>
+<body>
+	<%- include("./header.ejs") %>
+	<div class="container">
+	 	<h3 class="text-center">商品列表</h3>
+	</div>
+	<!-- <%= JSON.stringify(goods)%> -->
+	<div class="container">
+		<div class="row">
+		  <% goods.forEach(function(good,i){ %>
+                <div class="col-xs-12 col-md-6 col-lg-3">
+                    <div class="thumbnail">
+                        <a href="/goods/detail?goodid=<%= good.goodsId %>">
+	                    	<img class="good_img" tite="<%= good.description %>" src="<%= good.imgsrc %>" alt="...">
+	                    </a>
+                        <div class="caption">
+                            <h3><%= good.tt %></h3>
+                            <p><%= good.description %></p>
+                            <p class="clearfix">
+	                        	<button class="btn btn-danger pull-left" role="button">￥<%= good.price %></button>
+								
+	                        </p>
+	                        <p class="clearfix">
+	                        	<%- include("./addcart.ejs") %>
+	                   
+	                            <button data-id="<%= good.goodsId %>" id='addCart' class="btn btn-primary pull-right buy-btn" role="button">加入购物车</button>
+	                        </p>
+                        </div>
+                    </div>
+                </div>
+                
+            <% }) %>
+		</div>
+		<div class="ctr">
+			<a href="" class="btn-lg btn-info prev">上一页</a>
+			<a href="" class="btn-lg btn-info next">下一页</a>
+			<button class="btn btn-primary" type="button">
+			  当前页数：<span class="badge"><%= curPage %></span>
+			</button>
+		</div>
+	</div>
+	
+	<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+	<script src='https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js'></script>
+	<script src='/javascripts/jquery.cookie.js'></script>
+	<script src='/javascripts/test.js'></script>
+	<script src='/javascripts/add.js'></script>
+	<script src='/javascripts/pagination.js'></script>
+
+	<script>
+		initPag();
+		
+	</script>
+</body>
+</html>

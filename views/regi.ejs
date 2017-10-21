@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>注册</title>
+</head>
+<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="/stylesheets/common.css">
+<style>
+    .form-box{
+        width: 50%;
+        margin: 0 auto;
+    }
+</style>
+<body>
+  <%- include("./header.ejs") %>
+	<div class="container">
+		<h3 class="text-center">我是注册页</h3>
+		<div class="panel panel-primary form-box">
+			<div class="panel-heading">
+				注册
+			</div>
+			<div class="panel-body">
+				<form id="my_form">
+					<div class="form-group">
+                        <label for="">用户名：</label>
+                        <input id="username" type="text" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="">密码：</label>
+                        <input id="password" type="password" class="form-control">
+                    </div>
+                     <div class="form-group">
+                        <label for="">昵称：</label>
+                        <input id="nickname" type="nickname" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">注册</button>
+                        <button type="reset" class="btn btn-default">重置</button>
+                        <a href="/users/login" class="btn btn-info">登录</a>
+                        <a href="/" class="btn btn-info">返回首页</a>
+                    </div>
+				</form>
+			</div>
+		</div>
+	</div>
+	
+	<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+	<script src='https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js'></script>
+  <script src='/javascripts/jquery.cookie.js'></script>
+  <script src='/javascripts/test.js'></script>
+  <script src='/javascripts/add.js'></script>
+  <script>
+		$('#my_form').submit(function(e){
+			e.preventDefault()
+			loginFunc()
+		})
+
+		var loginFunc = function(){
+			$.ajax({
+         url:"/users/regi.req",
+         type:'post',
+         data:{
+             usn:$("#username").val(),
+             pwd:$("#password").val(),
+             nn:$("#nickname").val()
+         }
+      })
+      .then(function(res){
+      	switch(res){
+      		case '2':alert('注册成功'); 
+			     location.href = '/users/login'
+      			break;
+      		case '1':alert('用户名存在'); break;
+      		default:
+      			alert('注册失败'); 
+      	}
+      },function(xhr,err){
+      	console.log(err)
+      })
+		}
+	</script>
+</body>
+</html>

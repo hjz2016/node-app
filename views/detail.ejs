@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>详情</title>
+<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="/stylesheets/common.css">
+<style>
+	body{
+		background: #eee;
+	}
+	.mr10{
+		margin-right: 10px;
+	}
+
+	.good_img{
+		height: 200px!important;
+	}
+
+	.ctr{
+		padding: 10px 0;
+	}
+
+</style>
+</head>
+<body>
+	<%- include("./header.ejs") %>
+	<div class="container">
+	 	<h3 class="text-center" style="padding-bottom:30px;"><%= goodinfo.tt %></h3>
+	</div>
+	
+	<div class="container">
+		<div class="row">
+			<img class="col-xs-12 col-sm-4 img-thumbnail" src="<%= goodinfo.imgsrc %>" title='<%= goodinfo.tt %>' alt="">
+			<div class="col-xs-12 col-sm-4">
+				<h3 style="margin:20px 0;">价格：</h3>
+				<p class="clearfix" style="padding-bottom:30px;">
+	            	<button class="btn btn-danger pull-left" role="button">￥<%= goodinfo.price %></button>
+					
+	            </p>
+	            <h3 style="margin:20px 0;">数量：</h3>
+	            <p class="clearfix">
+	            	<%- include("./addcart.ejs") %>
+	       
+	                <button data-id="<%= goodinfo.goodsId %>" id='addCart' class="btn btn-primary pull-right buy-btn" role="button" style='margin-right: 100px;'>加入购物车</button>
+	            </p>
+			</div>
+		 	
+		</div>
+		
+	</div>
+	
+	<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+	<script src='https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js'></script>
+	<script src='/javascripts/jquery.cookie.js'></script>
+	<script src='/javascripts/test.js'></script>
+	<script src='/javascripts/add.js'></script>
+	<script src='/javascripts/pagination.js'></script>
+
+	<script>
+		initPag();
+		
+	</script>
+</body>
+</html>
