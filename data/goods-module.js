@@ -43,8 +43,9 @@ const goods_module = {
 	        	let goodNum = parseFloat(query_obj.goodNum)
 	        	let imgsrc = query_obj.imgsrc
 	        	let price = 0;
+	        	let goodId = parseFloat(query_obj.goodId)
 
-				goods_col.find({goodId:query_obj.goodId}).toArray(function(err,res){
+		goods_col.find({goodId:goodId}).toArray(function(err,res){
 	        		price = res[0].price
 	        		console.log(price)
 	        		if(aGoods.length > 0){
