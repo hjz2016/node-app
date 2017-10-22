@@ -33,16 +33,15 @@ function checkCookie(){
 }
 
 function checkCartInfo(){
+
+
 	if($.cookie('cart')){
 		// 存在cookie
 		var res = $.cookie('cart') || '';
 
-		if(res == '[]' || res == ''){
-			$('.dropdown-menu').html(`<img 
-				class='empty' src="/images/cart.jpg" title='购物车为空' alt="" />
-				<span>购物车是空的</span>`)
-			return;			
-		}
+		// if(res == '[]' || res == ''){
+						
+		// }
 
 		var goods_arr = JSON.parse(res)
 		var str = '';
@@ -113,9 +112,13 @@ function checkCartInfo(){
 		`
 		$('.dropdown-menu').html(str)
 		
-	}else{
-		$('#cart').html('无购物车数据');
+	}else{	
+		$('.dropdown-menu').html(`<img 
+			class='empty' src="/images/cart.jpg" title='购物车为空' alt="" />
+			<span>购物车是空的</span>`)
 		return;
+		// $('#cart').html('无购物车数据');
+		// return;
 	}
 
 }
