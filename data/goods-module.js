@@ -44,7 +44,7 @@ const goods_module = {
 	        	let imgsrc = query_obj.imgsrc
 	        	let price = 0;
 
-				goods_col.find({goodsId:query_obj.goodId}).toArray(function(err,res){
+				goods_col.find({goodId:query_obj.goodId}).toArray(function(err,res){
 	        		price = res[0].price
 	        		console.log(price)
 	        		if(aGoods.length > 0){
